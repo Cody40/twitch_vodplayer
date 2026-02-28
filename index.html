@@ -8,9 +8,11 @@
 </head>
 <body>
 <div class="align">
-    <button class="btnclass" onclick="loadplayer()">변환하기</button>
+    <input type="text" placeholder="Enter the VOD url here">
 </div>
 <div class="align">
+    <button class="btnclass" onclick="loadplayer()">Load</button>
+</div>
     <script src= "https://player.twitch.tv/js/embed/v1.js"></script>
     <div id="embed"></div>
     <script type="text/javascript">
@@ -23,6 +25,5 @@
             player.setVolume(1);
         }
     </script>
-</div>
 </body>
 </html>
