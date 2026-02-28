@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Codyplayer</title>
 </head>
 <body>
-<script src= "https://player.twitch.tv/js/embed/v1.js"></script>
-<div id="embed"></div>
-<script type="text/javascript">
-function loadplayer() {
-    var options = {
-    video: "2705745141",
-    parent: "cody40.github.io"
-    };
-    var player = new Twitch.Player("embed", options);
-    player.setVolume(1);
-}
-</script>
+<div class="align">
+    <script src= "https://player.twitch.tv/js/embed/v1.js"></script>
+    <div id="embed"></div>
+    <script type="text/javascript">
+        function loadplayer() {
+            var options = {
+            video: "2705745141",
+            parent: "cody40.github.io"
+            };
+            var player = new Twitch.Player("embed", options);
+            player.setVolume(1);
+        }
+    </script>
+</div>
 </body>
 </html>
