@@ -8,10 +8,10 @@
 </head>
 <body>
 <div class="align">
-    <input id="urlhere" type="text" placeholder="Enter the VOD url here">
+    <input id="urlhere" type="text" style="width: 400px;" placeholder="Enter the VOD url here">
 </div>
 <div class="align">
-    <button id="loadbutton" onclick="loadplayer()">Load</button>
+    <button id="loadbutton" onclick="loadplayer()">Fetch</button>
 </div>
     <script src= "https://player.twitch.tv/js/embed/v1.js"></script>
     <div id="embed"></div>
@@ -20,15 +20,26 @@
     <button id="pausebutton" onclick="psrsbutton()"><img id="psrsimg" src="icons/pause.png" width="75px" height="75px" style="margin-top: 4px;"/></button>
     <button id="goforwardbutton" onclick="goforward()"><img id="goforwardimg" src="icons/goforward.png" width="75px" height="75px" style="margin-top: 4px;"/></button>
 </div>
+<div class="align">
+    <input id="gototime" type="text" placeholder="hhmmss">
+    <button id="gonow" onclick="gototime()">Go</button>
+</div>
 <script type="text/javascript">
     var player;
+
+    const input = document.getElementById("urlhere");
 
     const pbtn = document.getElementById("pausebutton");
     const gbbtn = document.getElementById("gobackbutton");
     const gfbtn = document.getElementById("goforwardbutton");
+    const gttime = document.getElementById("gototime");
+    const gotimebtn = document.getElementById("gonow");
     pbtn.style.display = "none"
     gfbtn.style.display = "none"
     gbbtn.style.display = "none"
+    gttime.style.display = "none"
+    gotimebtn.style.display = "none"
+
 
     function loadplayer() {
         const urlhere = document.getElementById("urlhere");
@@ -39,15 +50,21 @@
         pbtn.style.display = ""
         gfbtn.style.display = ""
         gbbtn.style.display = ""
+        gttime.style.display = ""
+        gotimebtn.style.display = ""
+
+        const index = urlhere.value.indexOf("/videos/") + 8;
+        const endex = index + urlhere.value.slice(index).indexOf("?");
+        const vid_id = urlhere.value.slice(index, endex);
 
         playerwidth = Math.min(window.innerWidth, 800)
 
         var options = {
-        width: playerwidth-30,
-        height: (playerwidth-30)/16*9,
-        video: urlhere.value,
-        parent: "cody40.github.io",
-        muted: false
+            width: playerwidth-10,
+            height: (playerwidth-10)/16*9,
+            video: vid_id,
+            parent: "cody40.github.io",
+            muted: false
         };
         player = new Twitch.Player("embed", options);
         player.setVolume(1);
@@ -55,9 +72,9 @@
 
     function psrsbutton() {
         var img = document.getElementById("psrsimg");
-        console.log(img.src)
         if (img.src.includes("icons/resume.png")) {
             player.play();
+            console.log("play")
             img.src = "icons/pause.png"
         } else {
             player.pause();
@@ -78,6 +95,11 @@
         if (wholeduration > currenttime + 5) {
             player.seek(currenttime + 5)
         }
+    }
+
+    function gototime() {
+        timesecs = gttime.value.slice(0,2)*3600 + gttime.value.slice(2,4)*60 + gttime.value.slice(4,6)
+        player.seek(timesecs)
     }
 </script>
 </body>
