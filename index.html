@@ -6,17 +6,19 @@
     <title>Document</title>
 </head>
 <body>
-    <script src= "https://player.twitch.tv/js/embed/v1.js"></script>
-    <div id="embed"></div>
-    <script type="text/javascript">
-      var options = {
-        width: 378,
-        height: 620,
-        video: "2705745141",
-        parent: "cody40.github.io"
-      };
-      var player = new Twitch.Player("embed", options);
-      player.setVolume(0.5);
-    </script>
+<script src= "https://player.twitch.tv/js/embed/v1.js"></script>
+<div id="embed"></div>
+<script type="text/javascript">
+function loadplayer() {
+    var options = {
+    width: 378,
+    height: 620,
+    video: "2705745141",
+    parent: "cody40.github.io"
+    };
+    var player = new Twitch.Player("embed", options);
+    player.setVolume(1);
+}
+</script>
 </body>
 </html>
