@@ -72,7 +72,8 @@
             height: (playerwidth-10)/16*9,
             video: vid_id,
             parent: "cody40.github.io",
-            muted: false
+            muted: false,
+            autoplay: true
         };
         player = new Twitch.Player("embed", options);
         player.setVolume(1);
@@ -111,7 +112,7 @@
     }
 
     function getqual() {
-        player.getQualities();
+        console.log(player.getQualities());
     }
 </script>
 </body>
