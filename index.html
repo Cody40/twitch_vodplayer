@@ -25,8 +25,11 @@
     <button id="gonow" onclick="gototime()">Go</button>
 </div>
 <div class="align">
-    <button id="qual" onclick="getqual()">here</button>
-    <button id="160p" onclick="onesixtiep()">160p</button>
+    <button class="qual" onclick="setqual('160p')">160p</button>
+    <button class="qual" onclick="setqual('360p')">360p</button>
+    <button class="qual" onclick="setqual('480p')">480p</button>
+    <button class="qual" onclick="setqual('720p60')">720p60</button>
+    <button class="qual" onclick="setqual('1080p60')">1080p60</button>
 </div>
 <script type="text/javascript">
     var player;
@@ -38,13 +41,17 @@
     const gfbtn = document.getElementById("goforwardbutton");
     const gttime = document.getElementById("gototime");
     const gotimebtn = document.getElementById("gonow");
+    const qualbtns = document.querySelectorAll(".qual");
     pbtn.style.display = "none";
     gfbtn.style.display = "none";
     gbbtn.style.display = "none";
     gttime.style.display = "none";
     gotimebtn.style.display = "none";
+    qualbtns.forEach(element => {
+        element.style.display = "none";
+    });
 
-    
+
     function loadplayer() {
         const urlhere = document.getElementById("urlhere");
         const loadbutton = document.getElementById("loadbutton");
@@ -56,6 +63,9 @@
         gbbtn.style.display = "";
         gttime.style.display = "";
         gotimebtn.style.display = "";
+        qualbtns.forEach(element => {
+            element.style.display = "";
+        });
 
         const index = urlhere.value.indexOf("/videos/") + 8;
         var endex;
@@ -110,14 +120,9 @@
         timesecs = Number(gttime.value.slice(0,2))*3600 + Number(gttime.value.slice(2,4))*60 + Number(gttime.value.slice(4,6));
         player.seek(timesecs);
     }
-
-    function getqual() {
-        console.log(player.getQualities()[5]);
-    }
     
-    function onesixtiep() {
-        player.setQuality(player.getQualities()[player.getQualities().length-1]);
-        console.log(player.getQualities()[player.getQualities().length-1])
+    function setqual(qual) {
+        player.setQuality(qual);
     }
 </script>
 </body>
