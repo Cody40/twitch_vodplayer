@@ -44,8 +44,7 @@
     gttime.style.display = "none";
     gotimebtn.style.display = "none";
 
-    var qualities;
-
+    
     function loadplayer() {
         const urlhere = document.getElementById("urlhere");
         const loadbutton = document.getElementById("loadbutton");
@@ -79,14 +78,12 @@
         };
         player = new Twitch.Player("embed", options);
         player.setVolume(1);
-        qualities = player.getQualities();
     }
 
     function psrsbutton() {
         var img = document.getElementById("psrsimg");
         if (img.src.includes("icons/resume.png")) {
             player.play();
-            console.log("play");
             img.src = "icons/pause.png";
         } else {
             player.pause();
@@ -119,7 +116,8 @@
     }
     
     function onesixtiep() {
-        player.setQuality(qualities[qualities.length-1]);
+        player.setQuality(player.getQualities()[player.getQualities().length-1]);
+        console.log(player.getQualities()[player.getQualities().length-1])
     }
 </script>
 </body>
