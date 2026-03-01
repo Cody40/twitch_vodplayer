@@ -93,6 +93,7 @@
         player = new Twitch.Player("embed", options);
         
         player.addEventListner(Twitch.Player.READY, () => {
+            console.log("the player is ready")
             player.setVolume(1)
         });
     }
