@@ -92,8 +92,7 @@
         };
         player = new Twitch.Player("embed", options);
         
-        player.addEventListner(Twitch.Player.READY, () => {
-            console.log("the player is ready")
+        player.addEventListener(Twitch.Player.READY, () => {
             player.setVolume(1)
         });
     }
