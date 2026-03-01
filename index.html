@@ -91,7 +91,10 @@
             autoplay: true
         };
         player = new Twitch.Player("embed", options);
-        player.setVolume(1);
+        
+        player.addEventListner(Twitch.Player.READY, () => {
+            player.setVolume(1)
+        });
     }
 
     function psrsbutton() {
