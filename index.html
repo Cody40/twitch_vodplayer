@@ -25,7 +25,8 @@
     <button id="gonow" onclick="gototime()">Go</button>
 </div>
 <div class="align">
-    <button id="160p" onclick="getqual()">here</button>
+    <button id="qual" onclick="getqual()">here</button>
+    <button id="160p" onclick="onesixtiep()">160p</button>
 </div>
 <script type="text/javascript">
     var player;
@@ -43,6 +44,7 @@
     gttime.style.display = "none";
     gotimebtn.style.display = "none";
 
+    var qualities;
 
     function loadplayer() {
         const urlhere = document.getElementById("urlhere");
@@ -77,6 +79,7 @@
         };
         player = new Twitch.Player("embed", options);
         player.setVolume(1);
+        qualities = player.getQualities();
     }
 
     function psrsbutton() {
@@ -112,7 +115,11 @@
     }
 
     function getqual() {
-        console.log(player.getQualities());
+        console.log(player.getQualities()[5]);
+    }
+    
+    function onesixtiep() {
+        player.setQuality(qualities[qualities.length-1]);
     }
 </script>
 </body>
