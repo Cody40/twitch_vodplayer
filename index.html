@@ -24,6 +24,9 @@
     <input id="gototime" type="text" placeholder="hhmmss">
     <button id="gonow" onclick="gototime()">Go</button>
 </div>
+<div class="align">
+    <button id="160p" onclick="getqual()">here</button>
+</div>
 <script type="text/javascript">
     var player;
 
@@ -34,30 +37,35 @@
     const gfbtn = document.getElementById("goforwardbutton");
     const gttime = document.getElementById("gototime");
     const gotimebtn = document.getElementById("gonow");
-    pbtn.style.display = "none"
-    gfbtn.style.display = "none"
-    gbbtn.style.display = "none"
-    gttime.style.display = "none"
-    gotimebtn.style.display = "none"
+    pbtn.style.display = "none";
+    gfbtn.style.display = "none";
+    gbbtn.style.display = "none";
+    gttime.style.display = "none";
+    gotimebtn.style.display = "none";
 
 
     function loadplayer() {
         const urlhere = document.getElementById("urlhere");
         const loadbutton = document.getElementById("loadbutton");
 
-        urlhere.style.display = "none"
-        loadbutton.style.display = "none"
-        pbtn.style.display = ""
-        gfbtn.style.display = ""
-        gbbtn.style.display = ""
-        gttime.style.display = ""
-        gotimebtn.style.display = ""
+        urlhere.style.display = "none";
+        loadbutton.style.display = "none";
+        pbtn.style.display = "";
+        gfbtn.style.display = "";
+        gbbtn.style.display = "";
+        gttime.style.display = "";
+        gotimebtn.style.display = "";
 
         const index = urlhere.value.indexOf("/videos/") + 8;
-        const endex = index + urlhere.value.slice(index).indexOf("?");
+        var endex;
+        if (urlhere.value.slice(index).indexOf("?") == -1) {
+            endex = urlhere.value.length;
+        } else {
+            endex = index + urlhere.value.slice(index).indexOf("?");
+        }
         const vid_id = urlhere.value.slice(index, endex);
 
-        playerwidth = Math.min(window.innerWidth, 800)
+        playerwidth = Math.min(window.innerWidth, 800);
 
         var options = {
             width: playerwidth-10,
@@ -74,32 +82,36 @@
         var img = document.getElementById("psrsimg");
         if (img.src.includes("icons/resume.png")) {
             player.play();
-            console.log("play")
-            img.src = "icons/pause.png"
+            console.log("play");
+            img.src = "icons/pause.png";
         } else {
             player.pause();
-            img.src = "icons/resume.png"
+            img.src = "icons/resume.png";
         }
     }
 
     function goback() {
-        currenttime = player.getCurrentTime()
+        currenttime = player.getCurrentTime();
         if (0 < currenttime - 5) {
-            player.seek(currenttime - 5)
+            player.seek(currenttime - 5);
         }
     }
 
     function goforward() {
-        currenttime = player.getCurrentTime()
-        wholeduration = player.getDuration()
+        currenttime = player.getCurrentTime();
+        wholeduration = player.getDuration();
         if (wholeduration > currenttime + 5) {
-            player.seek(currenttime + 5)
+            player.seek(currenttime + 5);
         }
     }
 
     function gototime() {
-        timesecs = gttime.value.slice(0,2)*3600 + gttime.value.slice(2,4)*60 + gttime.value.slice(4,6)
-        player.seek(timesecs)
+        timesecs = Number(gttime.value.slice(0,2))*3600 + Number(gttime.value.slice(2,4))*60 + Number(gttime.value.slice(4,6));
+        player.seek(timesecs);
+    }
+
+    function getqual() {
+        player.getQualities();
     }
 </script>
 </body>
