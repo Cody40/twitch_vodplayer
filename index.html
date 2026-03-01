@@ -95,16 +95,20 @@
         player.addEventListener(Twitch.Player.READY, () => {
             player.setVolume(1)
         });
+        player.addEventListener(Twitch.Player.PLAY, () => {
+            document.getElementById("psrsimg").src = "icons/pause.png";
+        });
+        player.addEventListener(Twitch.Player.PAUSE, () => {
+            document.getElementById("psrsimg").src = "icons/resume.png";
+        })
     }
 
     function psrsbutton() {
         var img = document.getElementById("psrsimg");
-        if (img.src.includes("icons/resume.png")) {
+        if (player.isPaused()) {
             player.play();
-            img.src = "icons/pause.png";
         } else {
             player.pause();
-            img.src = "icons/resume.png";
         }
     }
 
